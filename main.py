@@ -11,8 +11,8 @@ def parse1():
 
     block1 = soup1.findAll('tr')  # находим контейнер с нужным классом
     for data in block1:  # проходим циклом по содержимому контейнера
-        title = ''
-        rating = ''
+        title = []
+        rating = []
 
         temp1 = data.find('td', class_='titleColumn')
         if temp1 is not None:
@@ -22,8 +22,15 @@ def parse1():
         if temp2 is not None:
             rating = temp2.text.split()
 
-        if title != '' and rating != '':
-            dictionary[str(title)] = str(rating)
+        if title != [] and rating != []:
+            title_str = ''
+            rating_str = ''
+            for elem in title:
+                title_str += elem + ' '
+            for elem in rating:
+                rating_str += elem + ' '
+
+            dictionary[title_str] = rating_str
     return dictionary
 
 
